@@ -1,7 +1,3 @@
-#[1459796400,1459807200,13869659,9,12,2,0,"TMCS Meeting","Chapter Meeting",3,"Sheraton Towers",0]
-#[1460401200,1460412000,14140860,8,10,2,0,"TMCS Meeting","Chapter Meeting",2,"Sheraton Towers",0]
-#[1461006000,1461016800,14140905,8,10,2,0,"TMCS Meeting","Chapter Meeting",2,"Sheraton Towers",0]
-
 import requests
 import re
 import datetime
