@@ -3,6 +3,7 @@ import re
 import datetime
 import smtplib
 
+# log in to check slots listed
 login_data = {
     'name' : 'TOASTMASTERS_EMAIL',
     'password' : 'TOASTMASTERS_PASSWORD',
@@ -14,6 +15,7 @@ url = 'http://www.supersaas.com/schedule/login/tmcs/TMCS_speaking_slots?after=%2
 s = requests.Session()
 p = s.post( url, data = login_data)
 
+# check for dates where number of bookings (including waitlist) < number of slots
 match = re.search('var app=\[(\[.*\])\]', p.text)
 if not match:
     smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
@@ -32,6 +34,7 @@ for mtg in match2:
     if int(mtg[2]) < int(mtg[1]):    
         available.append(datetime.datetime.utcfromtimestamp(int(mtg[0])).strftime('%Y-%m-%d'))
 
+# send email notification
 if len(available) > 0:
     emailstr = 'Subject: TMCS slot available\nTMCS slot available on '
     emailstr += ', '.join(available)
